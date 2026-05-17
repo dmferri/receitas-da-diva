@@ -2,9 +2,9 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/png" href="icone.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Receitas da Diva</title>
+<link rel="icon" type="image/png" href="icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
@@ -18,7 +18,6 @@
     --sage: #7A9E7E;
     --sage-light: #EBF2EC;
     --brown: #5C3D2E;
-    --brown-light: #8B6355;
     --text: #2C1810;
     --text-muted: #7A6055;
     --text-light: #B09A90;
@@ -26,500 +25,155 @@
     --border-light: #F0E8E0;
     --shadow: rgba(92,61,46,0.08);
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
 
-  body {
-    font-family: 'Lato', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    min-height: 100vh;
-  }
+  /* HEADER */
+  .header { background: var(--warm-white); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 50; box-shadow: 0 2px 12px var(--shadow); }
+  .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--terracotta); display: flex; align-items: center; gap: 10px; }
+  .logo-icon { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .logo-icon img { width: 38px; height: 38px; object-fit: contain; display: block; }
 
-  /* ── HEADER ── */
-  .header {
-    background: var(--warm-white);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    box-shadow: 0 2px 12px var(--shadow);
-  }
-
-  .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    color: var(--terracotta);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .logo-icon {
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-    background: transparent;
-  }
-
-  .header-actions { display: flex; gap: 10px; }
-
-  .btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 8px 18px;
-    border-radius: 6px;
-    font-family: 'Lato', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    cursor: pointer;
-    transition: all 0.18s;
-    border: none;
-  }
-
-  .btn-primary {
-    background: var(--terracotta);
-    color: #fff;
-  }
+  /* BUTTONS */
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 6px; font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.18s; border: none; }
+  .btn-primary { background: var(--terracotta); color: #fff; }
   .btn-primary:hover { background: var(--terracotta-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(193,103,74,0.35); }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--terracotta);
-    border: 1.5px solid var(--terracotta);
-  }
+  .btn-outline { background: transparent; color: var(--terracotta); border: 1.5px solid var(--terracotta); }
   .btn-outline:hover { background: var(--terracotta-pale); }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-  }
+  .btn-ghost { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
   .btn-ghost:hover { background: var(--border-light); }
-
-  .btn-danger {
-    background: transparent;
-    color: #c0392b;
-    border: 1px solid #e8c0bb;
-  }
+  .btn-danger { background: transparent; color: #c0392b; border: 1px solid #e8c0bb; }
   .btn-danger:hover { background: #fdf0ee; }
 
-  /* ── LAYOUT ── */
-  .layout {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    min-height: calc(100vh - 64px);
-  }
-
-  .sidebar {
-    background: var(--warm-white);
-    border-right: 1px solid var(--border);
-    padding: 1.5rem 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .main { padding: 2rem; }
-
-  /* ── SEARCH ── */
-  .search-wrap { position: relative; }
-  .search-wrap svg {
-    position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
-    color: var(--text-light); pointer-events: none;
-  }
-  .search-input {
-    width: 100%;
-    padding: 9px 12px 9px 36px;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    background: var(--cream);
-    font-family: 'Lato', sans-serif;
-    font-size: 13px;
-    color: var(--text);
-    transition: border-color 0.15s;
-  }
-  .search-input:focus { outline: none; border-color: var(--terracotta-light); background: var(--warm-white); }
-  .search-input::placeholder { color: var(--text-light); }
-
-  /* ── TAGS ── */
-  .section-title {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    margin-bottom: 8px;
-  }
-
-  .tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
-
-  .tag {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-size: 12px; font-weight: 700;
-    padding: 4px 12px; border-radius: 999px;
-    border: 1.5px solid var(--border);
-    background: var(--cream);
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.15s;
-    font-family: 'Lato', sans-serif;
-  }
-  .tag:hover { border-color: var(--terracotta-light); color: var(--terracotta); background: var(--terracotta-pale); }
-  .tag.active { background: var(--terracotta); border-color: var(--terracotta); color: #fff; }
-
-  /* ── RECIPE GRID ── */
-  .recipes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 18px;
-  }
-
-  .recipe-card {
-    background: var(--warm-white);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.25rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .recipe-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: var(--terracotta);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.2s;
-  }
-  .recipe-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px var(--shadow); border-color: var(--terracotta-light); }
-  .recipe-card:hover::before { transform: scaleX(1); }
-
-  .recipe-card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 17px;
-    color: var(--brown);
-    margin-bottom: 8px;
-    line-height: 1.3;
-  }
-
-  .recipe-card-meta {
-    display: flex; gap: 14px;
-    font-size: 12px; color: var(--text-light);
-    margin-bottom: 10px;
-  }
-  .recipe-card-meta span { display: flex; align-items: center; gap: 4px; }
-
-  .tag-pill {
-    display: inline-block;
-    font-size: 11px; font-weight: 700;
-    padding: 2px 9px; border-radius: 999px;
-    background: var(--terracotta-pale);
-    color: var(--terracotta-dark);
-    border: 1px solid #E8B5A0;
-    font-family: 'Lato', sans-serif;
-  }
-  .tag-pills { display: flex; flex-wrap: wrap; gap: 5px; }
-
-  /* ── EMPTY / LOADING ── */
-  .empty-state {
-    text-align: center;
-    padding: 5rem 2rem;
-    color: var(--text-light);
-  }
-  .empty-icon { font-size: 52px; margin-bottom: 1rem; display: block; opacity: 0.35; }
-  .empty-state p { font-size: 15px; margin-bottom: 6px; color: var(--text-muted); font-family: 'Playfair Display', serif; font-style: italic; }
-  .empty-state small { font-size: 13px; }
-
-  .loading { text-align: center; padding: 3rem; color: var(--text-light); font-style: italic; }
-
-  /* ── PANELS ── */
-  .panel { display: none; }
-  .panel.active { display: block; }
-
-  .panel-header {
-    display: flex; align-items: center; gap: 12px;
-    padding-bottom: 1.25rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
-    flex-wrap: wrap;
-  }
-
-  .back-btn {
-    display: flex; align-items: center; gap: 5px;
-    font-size: 13px; color: var(--text-muted);
-    background: none; border: none; cursor: pointer;
-    font-family: 'Lato', sans-serif;
-    padding: 4px 0;
-    transition: color 0.15s;
-  }
-  .back-btn:hover { color: var(--terracotta); }
-
-  .panel-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    color: var(--brown);
-  }
-
-  /* ── FORM ── */
-  .form-section {
-    background: var(--warm-white);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.25rem;
-  }
-  .form-section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 15px;
-    color: var(--brown);
-    margin-bottom: 1rem;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border-light);
-    display: flex; align-items: center; gap: 8px;
-  }
-
-  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-  .form-group:last-child { margin-bottom: 0; }
-  .form-label { font-size: 12px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; }
-  .form-input {
-    padding: 9px 12px;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    font-family: 'Lato', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    background: var(--cream);
-    transition: border-color 0.15s;
-  }
-  .form-input:focus { outline: none; border-color: var(--terracotta-light); background: var(--warm-white); }
-  textarea.form-input { min-height: 100px; resize: vertical; line-height: 1.7; }
-
-  .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-  .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-  /* ── INGREDIENTS TABLE ── */
-  .ing-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 10px; }
-  .ing-table th {
-    text-align: left; padding: 7px 8px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--text-light);
-    border-bottom: 1px solid var(--border);
-  }
-  .ing-table td { padding: 5px 4px; border-bottom: 1px solid var(--border-light); }
-  .ing-table input, .ing-table select {
-    width: 100%; border: 1px solid transparent; background: transparent;
-    font-size: 13px; color: var(--text); padding: 5px 6px;
-    border-radius: 5px; font-family: 'Lato', sans-serif;
-    transition: all 0.12s;
-  }
-  .ing-table input:focus, .ing-table select:focus {
-    outline: none; border-color: var(--terracotta-light);
-    background: var(--terracotta-pale);
-  }
-  .ing-table select { cursor: pointer; }
-  .add-row-btn {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 12px; font-weight: 700;
-    color: var(--terracotta); background: none; border: none;
-    cursor: pointer; font-family: 'Lato', sans-serif;
-    padding: 4px 0; transition: color 0.15s;
-  }
-  .add-row-btn:hover { color: var(--terracotta-dark); }
-  .del-btn {
-    color: var(--text-light); background: none; border: none;
-    cursor: pointer; font-size: 15px; padding: 3px 5px;
-    border-radius: 4px; transition: all 0.12s;
-    line-height: 1;
-  }
-  .del-btn:hover { color: #c0392b; background: #fdf0ee; }
-
-  /* ── TAG SELECTOR ── */
-  .tag-selector { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
-  .tag-sel-pill {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 12px; font-weight: 700;
-    padding: 4px 12px; border-radius: 999px;
-    background: var(--terracotta); color: #fff;
-    cursor: pointer; border: none; font-family: 'Lato', sans-serif;
-    transition: background 0.15s;
-  }
-  .tag-sel-pill:hover { background: var(--terracotta-dark); }
-  .tag-avail {
-    display: inline-flex; align-items: center;
-    font-size: 12px; font-weight: 700;
-    padding: 4px 12px; border-radius: 999px;
-    border: 1.5px dashed var(--border);
-    color: var(--text-muted); background: var(--cream);
-    cursor: pointer; font-family: 'Lato', sans-serif;
-    transition: all 0.15s;
-  }
-  .tag-avail:hover { border-color: var(--terracotta-light); color: var(--terracotta); background: var(--terracotta-pale); }
-  .new-tag-input {
-    font-size: 12px; padding: 4px 10px; border-radius: 999px;
-    border: 1.5px dashed var(--terracotta-light);
-    background: transparent; color: var(--text);
-    font-family: 'Lato', sans-serif; width: 130px;
-  }
-  .new-tag-input:focus { outline: none; border-color: var(--terracotta); }
-  .new-tag-input::placeholder { color: var(--text-light); }
-
-  /* ── DETAIL VIEW ── */
-  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-
-  .detail-section {
-    background: var(--warm-white);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.25rem;
-    margin-bottom: 1.25rem;
-  }
-  .detail-section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 14px; color: var(--brown);
-    margin-bottom: 10px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border-light);
-    display: flex; align-items: center; gap: 7px;
-  }
-
-  .meta-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.25rem; }
-  .meta-card {
-    background: var(--warm-white);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem;
-    text-align: center;
-  }
-  .meta-card-icon { font-size: 20px; margin-bottom: 5px; display: block; }
-  .meta-card-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 3px; }
-  .meta-card-value { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--brown); }
-
-  .ing-list { display: flex; flex-direction: column; gap: 3px; }
-  .ing-item {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 8px 12px; border-radius: 7px; font-size: 13px;
-  }
-  .ing-item:nth-child(odd) { background: var(--cream); }
-  .ing-name { color: var(--text); }
-  .ing-amount-wrap { display: flex; align-items: center; gap: 8px; }
-  .ing-amount { font-size: 12px; color: var(--text-muted); font-weight: 700; }
-
-  .convert-btn {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
-    padding: 2px 8px; border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--cream); color: var(--text-muted);
-    cursor: pointer; font-family: 'Lato', sans-serif;
-    transition: all 0.15s;
-  }
-  .convert-btn:hover { border-color: var(--terracotta-light); color: var(--terracotta); background: var(--terracotta-pale); }
-
-  .instructions-text { font-size: 14px; line-height: 1.85; color: var(--text); white-space: pre-wrap; }
-
-  /* ── CONVERTER MODAL ── */
-  .modal-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(44,24,16,0.45);
-    z-index: 200;
-    align-items: center; justify-content: center;
-  }
-  .modal-overlay.open { display: flex; }
-  .modal-box {
-    background: var(--warm-white);
-    border-radius: 14px;
-    padding: 1.75rem;
-    width: 320px;
-    box-shadow: 0 20px 60px rgba(92,61,46,0.25);
-  }
-  .modal-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--brown); margin-bottom: 1.25rem; }
-  .conv-row { display: flex; gap: 8px; margin-bottom: 10px; align-items: center; }
-  .conv-row input, .conv-row select {
-    flex: 1; padding: 8px 10px;
-    border: 1.5px solid var(--border); border-radius: 7px;
-    font-family: 'Lato', sans-serif; font-size: 13px;
-    color: var(--text); background: var(--cream);
-  }
-  .conv-row input:focus, .conv-row select:focus { outline: none; border-color: var(--terracotta-light); }
-  .conv-arrow { text-align: center; font-size: 18px; color: var(--terracotta); margin: 4px 0 8px; }
-  .conv-result {
-    background: var(--terracotta-pale);
-    border: 1px solid #E8B5A0;
-    border-radius: 8px; padding: 10px 14px;
-    font-family: 'Playfair Display', serif;
-    font-size: 17px; color: var(--brown);
-    text-align: center; margin-bottom: 12px;
-  }
-
-  /* ── TOAST ── */
-  .toast {
-    position: fixed; bottom: 24px; right: 24px;
-    background: var(--brown); color: #fff;
-    padding: 10px 18px; border-radius: 8px;
-    font-size: 13px; font-weight: 700;
-    z-index: 300; opacity: 0;
-    transform: translateY(8px);
-    transition: all 0.25s;
-    pointer-events: none;
-  }
-  .toast.show { opacity: 1; transform: translateY(0); }
-  .toast.success { background: var(--sage); }
-  .toast.error { background: #c0392b; }
-
-  /* ── STATUS BAR ── */
-  .status-bar {
-    background: var(--sage-light);
-    border-bottom: 1px solid #C5DEC7;
-    padding: 6px 2rem;
-    font-size: 12px;
-    color: var(--sage);
-    font-weight: 700;
-    display: flex; align-items: center; gap: 6px;
-  }
+  /* STATUS */
+  .status-bar { background: var(--sage-light); border-bottom: 1px solid #C5DEC7; padding: 6px 2rem; font-size: 12px; color: var(--sage); font-weight: 700; display: flex; align-items: center; gap: 6px; }
   .status-bar.offline { background: #FFF3E0; border-color: #FFD08A; color: #B07000; }
   .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sage); display: inline-block; }
   .status-bar.offline .status-dot { background: #F5A623; }
 
+  /* LAYOUT */
+  .layout { display: grid; grid-template-columns: 280px 1fr; min-height: calc(100vh - 90px); }
+  .sidebar { background: var(--warm-white); border-right: 1px solid var(--border); padding: 1.5rem 1.25rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .main { padding: 2rem; }
 
+  /* SEARCH */
+  .search-wrap { position: relative; }
+  .search-wrap svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--text-light); pointer-events: none; }
+  .search-input { width: 100%; padding: 9px 12px 9px 36px; border: 1.5px solid var(--border); border-radius: 8px; background: var(--cream); font-family: 'Lato', sans-serif; font-size: 13px; color: var(--text); }
+  .search-input:focus { outline: none; border-color: var(--terracotta-light); background: var(--warm-white); }
+  .search-input::placeholder { color: var(--text-light); }
+
+  /* TAGS SIDEBAR */
+  .section-title { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); margin-bottom: 8px; }
+  .tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { display: inline-flex; align-items: center; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--cream); color: var(--text-muted); cursor: pointer; transition: all 0.15s; font-family: 'Lato', sans-serif; }
+  .tag:hover { border-color: var(--terracotta-light); color: var(--terracotta); background: var(--terracotta-pale); }
+  .tag.active { background: var(--terracotta); border-color: var(--terracotta); color: #fff; }
+
+  /* HERO */
   .diva-hero { position: relative; }
-  .diva-hero-inner {
-    display: flex; align-items: flex-end;
-    justify-content: space-between; gap: 0;
-  }
-  .diva-mascot {
-    width: 180px; flex-shrink: 0;
-    display: flex; align-items: flex-end; justify-content: center;
-    pointer-events: none; user-select: none;
-  }
-  .diva-mascot img {
-    width: 170px; height: auto;
-    object-fit: contain; display: block;
-  }
+  .diva-hero-inner { display: flex; align-items: flex-end; justify-content: space-between; }
+  .diva-mascot { width: 180px; flex-shrink: 0; display: flex; align-items: flex-end; justify-content: center; pointer-events: none; }
+  .diva-mascot img { width: 170px; height: auto; object-fit: contain; display: block; }
   .diva-welcome { flex: 1; padding: 1.5rem 0 1rem 0; }
-  .diva-welcome-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px; color: var(--brown);
-    line-height: 1.2; margin-bottom: 6px;
-  }
+  .diva-welcome-title { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--brown); line-height: 1.2; margin-bottom: 6px; }
   .diva-welcome-title em { color: var(--terracotta); font-style: italic; }
   .diva-welcome-sub { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-  .diva-divider {
-    height: 1px;
-    background: linear-gradient(to right, var(--terracotta-light), transparent);
-    margin: 0 0 1.5rem 0;
-  }
+  .diva-divider { height: 1px; background: linear-gradient(to right, var(--terracotta-light), transparent); margin: 0 0 1.5rem 0; }
+
+  /* CARDS */
+  .recipes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+  .recipe-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden; }
+  .recipe-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--terracotta); transform: scaleX(0); transform-origin: left; transition: transform 0.2s; }
+  .recipe-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px var(--shadow); border-color: var(--terracotta-light); }
+  .recipe-card:hover::before { transform: scaleX(1); }
+  .recipe-card-title { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--brown); margin-bottom: 8px; line-height: 1.3; }
+  .recipe-card-meta { display: flex; gap: 14px; font-size: 12px; color: var(--text-light); margin-bottom: 10px; }
+  .tag-pill { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: var(--terracotta-pale); color: var(--terracotta-dark); border: 1px solid #E8B5A0; font-family: 'Lato', sans-serif; }
+  .tag-pills { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  /* EMPTY / LOADING */
+  .empty-state { text-align: center; padding: 5rem 2rem; color: var(--text-light); }
+  .empty-icon { font-size: 52px; margin-bottom: 1rem; display: block; opacity: 0.35; }
+  .empty-state p { font-size: 15px; margin-bottom: 6px; color: var(--text-muted); font-family: 'Playfair Display', serif; font-style: italic; }
+  .loading { text-align: center; padding: 3rem; color: var(--text-light); font-style: italic; }
+
+  /* PANELS */
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .panel-header { display: flex; align-items: center; gap: 12px; padding-bottom: 1.25rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .back-btn { display: flex; align-items: center; gap: 5px; font-size: 13px; color: var(--text-muted); background: none; border: none; cursor: pointer; font-family: 'Lato', sans-serif; padding: 4px 0; transition: color 0.15s; }
+  .back-btn:hover { color: var(--terracotta); }
+  .panel-title { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--brown); }
+
+  /* FORM */
+  .form-section { background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; }
+  .form-section-title { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--brown); margin-bottom: 1rem; padding-bottom: 8px; border-bottom: 1px solid var(--border-light); }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .form-group:last-child { margin-bottom: 0; }
+  .form-label { font-size: 12px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; }
+  .form-input { padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'Lato', sans-serif; font-size: 14px; color: var(--text); background: var(--cream); transition: border-color 0.15s; }
+  .form-input:focus { outline: none; border-color: var(--terracotta-light); background: var(--warm-white); }
+  textarea.form-input { min-height: 100px; resize: vertical; line-height: 1.7; }
+  .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+  /* INGREDIENTS */
+  .ing-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 10px; }
+  .ing-table th { text-align: left; padding: 7px 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-light); border-bottom: 1px solid var(--border); }
+  .ing-table td { padding: 5px 4px; border-bottom: 1px solid var(--border-light); }
+  .ing-table input, .ing-table select { width: 100%; border: 1px solid transparent; background: transparent; font-size: 13px; color: var(--text); padding: 5px 6px; border-radius: 5px; font-family: 'Lato', sans-serif; }
+  .ing-table input:focus, .ing-table select:focus { outline: none; border-color: var(--terracotta-light); background: var(--terracotta-pale); }
+  .add-row-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--terracotta); background: none; border: none; cursor: pointer; font-family: 'Lato', sans-serif; padding: 4px 0; }
+  .add-row-btn:hover { color: var(--terracotta-dark); }
+  .del-btn { color: var(--text-light); background: none; border: none; cursor: pointer; font-size: 15px; padding: 3px 5px; border-radius: 4px; line-height: 1; }
+  .del-btn:hover { color: #c0392b; background: #fdf0ee; }
+
+  /* TAG SELECTOR */
+  .tag-selector { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
+  .tag-sel-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; background: var(--terracotta); color: #fff; cursor: pointer; border: none; font-family: 'Lato', sans-serif; }
+  .tag-sel-pill:hover { background: var(--terracotta-dark); }
+  .tag-avail { display: inline-flex; align-items: center; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; border: 1.5px dashed var(--border); color: var(--text-muted); background: var(--cream); cursor: pointer; font-family: 'Lato', sans-serif; }
+  .tag-avail:hover { border-color: var(--terracotta-light); color: var(--terracotta); background: var(--terracotta-pale); }
+  .new-tag-input { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1.5px dashed var(--terracotta-light); background: transparent; color: var(--text); font-family: 'Lato', sans-serif; width: 130px; }
+  .new-tag-input:focus { outline: none; border-color: var(--terracotta); }
+  .new-tag-input::placeholder { color: var(--text-light); }
+
+  /* DETAIL */
+  .meta-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.25rem; }
+  .meta-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; text-align: center; }
+  .meta-card-icon { font-size: 20px; margin-bottom: 5px; display: block; }
+  .meta-card-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 3px; }
+  .meta-card-value { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--brown); }
+  .detail-section { background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.25rem; }
+  .detail-section-title { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--brown); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border-light); }
+  .ing-list { display: flex; flex-direction: column; gap: 3px; }
+  .ing-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-radius: 7px; font-size: 13px; }
+  .ing-item:nth-child(odd) { background: var(--cream); }
+  .ing-amount { font-size: 12px; color: var(--text-muted); font-weight: 700; }
+  .instructions-text { font-size: 14px; line-height: 1.85; color: var(--text); white-space: pre-wrap; }
+  .convert-btn { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); background: var(--cream); color: var(--text-muted); cursor: pointer; font-family: 'Lato', sans-serif; }
+  .convert-btn:hover { border-color: var(--terracotta-light); color: var(--terracotta); background: var(--terracotta-pale); }
+
+  /* CONVERTER MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(44,24,16,0.45); z-index: 200; align-items: center; justify-content: center; }
+  .modal-overlay.open { display: flex; }
+  .modal-box { background: var(--warm-white); border-radius: 14px; padding: 1.75rem; width: 320px; box-shadow: 0 20px 60px rgba(92,61,46,0.25); }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--brown); margin-bottom: 1.25rem; }
+  .conv-row { display: flex; gap: 8px; margin-bottom: 10px; }
+  .conv-row input, .conv-row select { flex: 1; padding: 8px 10px; border: 1.5px solid var(--border); border-radius: 7px; font-family: 'Lato', sans-serif; font-size: 13px; color: var(--text); background: var(--cream); }
+  .conv-arrow { text-align: center; font-size: 18px; color: var(--terracotta); margin: 4px 0 8px; }
+  .conv-result { background: var(--terracotta-pale); border: 1px solid #E8B5A0; border-radius: 8px; padding: 10px 14px; font-family: 'Playfair Display', serif; font-size: 17px; color: var(--brown); text-align: center; margin-bottom: 12px; }
+
+  /* TOAST */
+  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--brown); color: #fff; padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 700; z-index: 300; opacity: 0; transform: translateY(8px); transition: all 0.25s; pointer-events: none; }
+  .toast.show { opacity: 1; transform: translateY(0); }
+  .toast.success { background: var(--sage); }
+  .toast.error { background: #c0392b; }
 
   @media (max-width: 768px) {
     .layout { grid-template-columns: 1fr; }
     .sidebar { border-right: none; border-bottom: 1px solid var(--border); }
-    .form-grid-3, .form-grid-2 { grid-template-columns: 1fr; }
+    .form-grid-3 { grid-template-columns: 1fr; }
     .meta-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
@@ -528,12 +182,10 @@
 
 <header class="header">
   <div class="logo">
-    <div class="logo-icon"><img src="icone.png" alt="Ícone" style="width:28px;height:28px;object-fit:contain;display:block;"></div>
+    <div class="logo-icon"><img src="icone.png" alt="Ícone"></div>
     Receitas da Diva
   </div>
-  <div class="header-actions">
-    <button class="btn btn-primary" onclick="showForm()">+ Nova receita</button>
-  </div>
+  <button class="btn btn-primary" onclick="showForm()">+ Nova receita</button>
 </header>
 
 <div id="statusBar" class="status-bar">
@@ -543,33 +195,25 @@
 
 <div class="layout">
   <aside class="sidebar">
-    <div>
-      <div class="search-wrap">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input class="search-input" type="text" id="searchInput" placeholder="Buscar por nome ou tag..." oninput="applyFilters()">
-      </div>
+    <div class="search-wrap">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input class="search-input" type="text" id="searchInput" placeholder="Buscar por nome ou tag..." oninput="applyFilters()">
     </div>
-
     <div>
       <div class="section-title">Filtrar por tags</div>
       <div class="tags-wrap" id="tagFilters">
-        <span style="font-size:12px; color:var(--text-light); font-style:italic;">Nenhuma tag ainda</span>
+        <span style="font-size:12px;color:var(--text-light);font-style:italic;">Nenhuma tag ainda</span>
       </div>
     </div>
-
-    <div style="margin-top:auto; padding-top:1rem; border-top:1px solid var(--border);">
-      <div style="font-size:11px; color:var(--text-light); line-height:1.6;">
-        As receitas ficam salvas na nuvem e são compartilhadas com toda a família. 🌿
-      </div>
+    <div style="margin-top:auto;padding-top:1rem;border-top:1px solid var(--border);">
+      <div style="font-size:11px;color:var(--text-light);line-height:1.6;">As receitas ficam salvas na nuvem e são compartilhadas com toda a família. 🌿</div>
     </div>
   </aside>
 
   <main class="main">
-    <!-- Lista -->
+
+    <!-- LISTA -->
     <div id="listPanel" class="panel active">
-      
-      
-      
       <div class="diva-hero" id="divaHero">
         <div class="diva-hero-inner">
           <div class="diva-welcome">
@@ -591,11 +235,11 @@
       </div>
     </div>
 
-    <!-- Detalhes -->
+    <!-- DETALHE -->
     <div id="detailPanel" class="panel">
       <div class="panel-header">
         <button class="back-btn" onclick="showList()">← Voltar</button>
-        <div style="margin-left:auto; display:flex; gap:8px;">
+        <div style="margin-left:auto;display:flex;gap:8px;">
           <button class="btn btn-outline" onclick="showForm(currentId)">✏️ Editar</button>
           <button class="btn btn-danger" onclick="deleteRecipe(currentId)">🗑 Excluir</button>
         </div>
@@ -603,13 +247,12 @@
       <div id="detailContent"></div>
     </div>
 
-    <!-- Formulário -->
+    <!-- FORMULÁRIO -->
     <div id="formPanel" class="panel">
       <div class="panel-header">
         <button class="back-btn" onclick="showList()">← Voltar</button>
         <span class="panel-title" id="formTitle">Nova receita</span>
       </div>
-
       <div class="form-section">
         <div class="form-section-title">📋 Informações gerais</div>
         <div class="form-group">
@@ -635,7 +278,6 @@
           <input class="form-input" type="text" id="fUtensils" placeholder="Ex: Tigela grande, batedeira, forma redonda 20cm">
         </div>
       </div>
-
       <div class="form-section">
         <div class="form-section-title">🥕 Ingredientes</div>
         <table class="ing-table">
@@ -651,31 +293,25 @@
         </table>
         <button class="add-row-btn" onclick="addIngRow()">+ Adicionar ingrediente</button>
       </div>
-
       <div class="form-section">
         <div class="form-section-title">📝 Modo de preparo</div>
-        <div class="form-group">
-          <textarea class="form-input" id="fInstructions" placeholder="Descreva o passo a passo da receita..."></textarea>
-        </div>
+        <textarea class="form-input" id="fInstructions" placeholder="Descreva o passo a passo da receita..."></textarea>
       </div>
-
       <div class="form-section">
         <div class="form-section-title">🏷️ Tags</div>
-        <div class="tag-selector" id="tagSelector">
-          <input class="new-tag-input" id="newTagInput" type="text" placeholder="Nova tag... (Enter)" onkeydown="handleTagInput(event)">
-        </div>
-        <div style="font-size:11px; color:var(--text-light); margin-top:8px;">Clique nas tags existentes para adicionar, ou digite uma nova e pressione Enter.</div>
+        <div class="tag-selector" id="tagSelector"></div>
+        <div style="font-size:11px;color:var(--text-light);margin-top:8px;">Clique nas tags existentes para adicionar, ou digite uma nova e pressione Enter.</div>
       </div>
-
-      <div style="display:flex; gap:10px; padding-bottom:2rem;">
-        <button class="btn btn-primary" onclick="saveRecipe()" style="font-size:15px; padding:11px 28px;">✓ Salvar receita</button>
+      <div style="display:flex;gap:10px;padding-bottom:2rem;">
+        <button class="btn btn-primary" onclick="saveRecipe()" style="font-size:15px;padding:11px 28px;">✓ Salvar receita</button>
         <button class="btn btn-ghost" onclick="showList()">Cancelar</button>
       </div>
     </div>
+
   </main>
 </div>
 
-<!-- Converter Modal -->
+<!-- CONVERSOR -->
 <div class="modal-overlay" id="converterModal" onclick="if(event.target===this)closeConverter()">
   <div class="modal-box">
     <div class="modal-title">⚖️ Conversor de medidas</div>
@@ -688,14 +324,12 @@
       <select id="convTo" onchange="doConvert()"></select>
     </div>
     <div class="conv-result" id="convResult">—</div>
-    <button class="btn btn-ghost" onclick="closeConverter()" style="width:100%; justify-content:center;">Fechar</button>
+    <button class="btn btn-ghost" onclick="closeConverter()" style="width:100%;justify-content:center;">Fechar</button>
   </div>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<!-- Firebase SDK -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, doc, addDoc, updateDoc, deleteDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
@@ -712,36 +346,25 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ── STATE ──
-let recipes = [];
-let allTags = [];
-let activeFilters = [];
-let currentId = null;
-let editingId = null;
-let formTags = [];
-
-window.currentId = null;
-
-// ── UNITS ──
 const UNITS = [
-  { label: 'xícara (240ml)', key: 'xicara', ml: 240, type: 'volume' },
-  { label: 'xícara de chá (200ml)', key: 'xicara_cha', ml: 200, type: 'volume' },
-  { label: 'colher de sopa (15ml)', key: 'colher_sopa', ml: 15, type: 'volume' },
-  { label: 'colher de chá (5ml)', key: 'colher_cha', ml: 5, type: 'volume' },
-  { label: 'ml', key: 'ml', ml: 1, type: 'volume' },
-  { label: 'litro (L)', key: 'litro', ml: 1000, type: 'volume' },
-  { label: 'fl oz', key: 'floz', ml: 29.5735, type: 'volume' },
-  { label: 'g', key: 'g', g: 1, type: 'weight' },
-  { label: 'kg', key: 'kg', g: 1000, type: 'weight' },
-  { label: 'oz (peso)', key: 'oz', g: 28.3495, type: 'weight' },
-  { label: 'lb', key: 'lb', g: 453.592, type: 'weight' },
-  { label: 'pitada', key: 'pitada', type: 'other' },
-  { label: 'unidade', key: 'unidade', type: 'other' },
-  { label: 'dente (alho)', key: 'dente', type: 'other' },
-  { label: 'folha', key: 'folha', type: 'other' },
-  { label: 'ramo', key: 'ramo', type: 'other' },
-  { label: 'fatia', key: 'fatia', type: 'other' },
-  { label: 'a gosto', key: 'a_gosto', type: 'other' },
+  { label: 'xícara (240ml)',        key: 'xicara',      ml: 240,     type: 'volume' },
+  { label: 'xícara de chá (200ml)', key: 'xicara_cha',  ml: 200,     type: 'volume' },
+  { label: 'colher de sopa (15ml)', key: 'colher_sopa', ml: 15,      type: 'volume' },
+  { label: 'colher de chá (5ml)',   key: 'colher_cha',  ml: 5,       type: 'volume' },
+  { label: 'ml',                    key: 'ml',          ml: 1,       type: 'volume' },
+  { label: 'litro (L)',             key: 'litro',       ml: 1000,    type: 'volume' },
+  { label: 'fl oz',                 key: 'floz',        ml: 29.5735, type: 'volume' },
+  { label: 'g',                     key: 'g',           g: 1,        type: 'weight' },
+  { label: 'kg',                    key: 'kg',          g: 1000,     type: 'weight' },
+  { label: 'oz (peso)',             key: 'oz',          g: 28.3495,  type: 'weight' },
+  { label: 'lb',                    key: 'lb',          g: 453.592,  type: 'weight' },
+  { label: 'pitada',                key: 'pitada',      type: 'other' },
+  { label: 'unidade',               key: 'unidade',     type: 'other' },
+  { label: 'dente (alho)',          key: 'dente',       type: 'other' },
+  { label: 'folha',                 key: 'folha',       type: 'other' },
+  { label: 'ramo',                  key: 'ramo',        type: 'other' },
+  { label: 'fatia',                 key: 'fatia',       type: 'other' },
+  { label: 'a gosto',               key: 'a_gosto',     type: 'other' },
 ];
 
 function unitLabel(key) {
@@ -749,49 +372,45 @@ function unitLabel(key) {
   return u ? u.label : (key || '');
 }
 
-// ── EXPOSE TO HTML HANDLERS ──
-window.showList = showList;
-window.showDetail = showDetail;
-window.showForm = showForm;
-window.saveRecipe = saveRecipe;
-window.deleteRecipe = deleteRecipe;
-window.addIngRow = addIngRow;
-window.handleTagInput = handleTagInput;
-window.applyFilters = applyFilters;
-window.openConverter = openConverter;
-window.closeConverter = closeConverter;
-window.doConvert = doConvert;
+let recipes = [];
+let allTags = [];
+let activeFilters = [];
+let currentId = null;
+let editingId = null;
+let formTags = [];
 
-// ── FIRESTORE LISTENER ──
+// STATUS
+function setStatus(online) {
+  const bar = document.getElementById('statusBar');
+  bar.className = 'status-bar' + (online ? '' : ' offline');
+  document.getElementById('statusText').textContent = online
+    ? 'Conectado · receitas sincronizadas com a família'
+    : 'Sem conexão · verifique a internet';
+}
+
+// FIRESTORE LISTENER
 const q = query(collection(db, 'receitas'), orderBy('createdAt', 'desc'));
-onSnapshot(q, (snapshot) => {
+onSnapshot(q, snapshot => {
   recipes = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
   allTags = [...new Set(recipes.flatMap(r => r.tags || []))].sort();
   renderTagFilters();
   applyFilters();
   setStatus(true);
-}, (err) => {
-  console.error(err);
-  setStatus(false);
-});
+}, () => setStatus(false));
 
-function setStatus(online) {
-  const bar = document.getElementById('statusBar');
-  const txt = document.getElementById('statusText');
-  bar.className = 'status-bar' + (online ? '' : ' offline');
-  txt.textContent = online ? 'Conectado · receitas sincronizadas com a família' : 'Sem conexão · verifique a internet';
-}
-
-// ── TAGS ──
+// TAGS SIDEBAR
 function renderTagFilters() {
   const el = document.getElementById('tagFilters');
-  if (!allTags.length) { el.innerHTML = '<span style="font-size:12px; color:var(--text-light); font-style:italic;">Nenhuma tag ainda</span>'; return; }
+  if (!allTags.length) {
+    el.innerHTML = '<span style="font-size:12px;color:var(--text-light);font-style:italic;">Nenhuma tag ainda</span>';
+    return;
+  }
   el.innerHTML = '';
   allTags.forEach(t => {
     const b = document.createElement('button');
     b.className = 'tag' + (activeFilters.includes(t) ? ' active' : '');
     b.textContent = t;
-    b.onclick = () => { toggleFilter(t); };
+    b.onclick = () => toggleFilter(t);
     el.appendChild(b);
   });
 }
@@ -802,7 +421,7 @@ function toggleFilter(t) {
   applyFilters();
 }
 
-// ── FILTERS ──
+// FILTERS
 function applyFilters() {
   const q = document.getElementById('searchInput').value.toLowerCase().trim();
   const filtered = recipes.filter(r => {
@@ -816,8 +435,7 @@ function applyFilters() {
 function renderCards(list) {
   const grid = document.getElementById('recipesGrid');
   const empty = document.getElementById('emptyState');
-  const loading = document.getElementById('loadingState');
-  loading.style.display = 'none';
+  document.getElementById('loadingState').style.display = 'none';
   if (!list.length) { grid.style.display = 'none'; empty.style.display = 'block'; return; }
   empty.style.display = 'none'; grid.style.display = 'grid';
   grid.innerHTML = '';
@@ -837,51 +455,35 @@ function renderCards(list) {
   });
 }
 
-// ── DETAIL ──
+// DETAIL
 function showDetail(id) {
   const r = recipes.find(x => x.id === id);
   if (!r) return;
   currentId = id;
-  window.currentId = id;
-  const el = document.getElementById('detailContent');
-  el.innerHTML = `
-    <h1 style="font-family:'Playfair Display',serif; font-size:28px; color:var(--brown); margin-bottom:10px;">${r.name}</h1>
+  document.getElementById('detailContent').innerHTML = `
+    <h1 style="font-family:'Playfair Display',serif;font-size:28px;color:var(--brown);margin-bottom:10px;">${r.name}</h1>
     <div class="tag-pills" style="margin-bottom:1.5rem;">${(r.tags||[]).map(t=>`<span class="tag-pill">${t}</span>`).join('')}</div>
-
     <div class="meta-grid">
       <div class="meta-card"><span class="meta-card-icon">⏱</span><div class="meta-card-label">Tempo</div><div class="meta-card-value">${r.time||'—'}</div></div>
       <div class="meta-card"><span class="meta-card-icon">👥</span><div class="meta-card-label">Porções</div><div class="meta-card-value">${r.servings||'—'}</div></div>
       <div class="meta-card"><span class="meta-card-icon">⚖️</span><div class="meta-card-label">Por porção</div><div class="meta-card-value">${r.portionWeight||'—'}</div></div>
     </div>
-
-    ${r.utensils ? `
+    ${r.utensils ? `<div class="detail-section"><div class="detail-section-title">🔧 Utensílios</div><p style="font-size:13px;color:var(--text-muted);">${r.utensils}</p></div>` : ''}
     <div class="detail-section">
-      <div class="detail-section-title">🔧 Utensílios</div>
-      <p style="font-size:13px; color:var(--text-muted);">${r.utensils}</p>
-    </div>` : ''}
-
-    <div class="detail-section">
-      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid var(--border-light);">
-        <div style="font-family:'Playfair Display',serif; font-size:14px; color:var(--brown);">🥕 Ingredientes</div>
-        <button class="convert-btn" onclick="openConverter()">⚖️ Conversor de medidas</button>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border-light);">
+        <div style="font-family:'Playfair Display',serif;font-size:14px;color:var(--brown);">🥕 Ingredientes</div>
+        <button class="convert-btn" onclick="openConverter()">⚖️ Conversor</button>
       </div>
       <div class="ing-list">${(r.ingredients||[]).map(i=>`
-        <div class="ing-item">
-          <span class="ing-name">${i.name}</span>
-          <span class="ing-amount-wrap"><span class="ing-amount">${i.qty} ${unitLabel(i.unit)}</span></span>
-        </div>`).join('')}</div>
+        <div class="ing-item"><span>${i.name}</span><span class="ing-amount">${i.qty} ${unitLabel(i.unit)}</span></div>`).join('')}
+      </div>
     </div>
-
-    ${r.instructions ? `
-    <div class="detail-section">
-      <div class="detail-section-title">📝 Modo de preparo</div>
-      <div class="instructions-text">${r.instructions}</div>
-    </div>` : ''}
+    ${r.instructions ? `<div class="detail-section"><div class="detail-section-title">📝 Modo de preparo</div><div class="instructions-text">${r.instructions}</div></div>` : ''}
   `;
   setPanel('detail');
 }
 
-// ── FORM ──
+// FORM
 function showForm(id) {
   editingId = id || null;
   document.getElementById('formTitle').textContent = id ? 'Editar receita' : 'Nova receita';
@@ -905,40 +507,44 @@ function renderIngTable(ings) {
 }
 
 function addIngRow(i) {
-  const body = document.getElementById('ingBody');
   const tr = document.createElement('tr');
   const opts = UNITS.map(u => `<option value="${u.key}" ${i&&i.unit===u.key?'selected':''}>${u.label}</option>`).join('');
   tr.innerHTML = `
-    <td><input type="text" placeholder="Nome do ingrediente" value="${i?escHtml(i.name):''}"></td>
+    <td><input type="text" placeholder="Nome do ingrediente" value="${i ? escHtml(i.name) : ''}"></td>
     <td><input type="number" placeholder="Qtd" value="${i&&i.qty?i.qty:''}" min="0" step="any"></td>
     <td><select>${opts}</select></td>
-    <td><button class="del-btn" onclick="this.closest('tr').remove()" title="Remover">✕</button></td>
+    <td><button class="del-btn" onclick="this.closest('tr').remove()">✕</button></td>
   `;
-  body.appendChild(tr);
+  document.getElementById('ingBody').appendChild(tr);
 }
 
-function escHtml(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function escHtml(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 
 function renderFormTags() {
   const sel = document.getElementById('tagSelector');
-  const inp = document.getElementById('newTagInput');
   sel.innerHTML = '';
   formTags.forEach(t => {
-    const span = document.createElement('button');
-    span.className = 'tag-sel-pill';
-    span.innerHTML = `${escHtml(t)} ✕`;
-    span.onclick = () => { formTags = formTags.filter(x=>x!==t); renderFormTags(); };
-    sel.appendChild(span);
+    const btn = document.createElement('button');
+    btn.className = 'tag-sel-pill';
+    btn.innerHTML = `${escHtml(t)} ✕`;
+    btn.onclick = () => { formTags = formTags.filter(x => x !== t); renderFormTags(); };
+    sel.appendChild(btn);
   });
   allTags.filter(t => !formTags.includes(t)).forEach(t => {
-    const span = document.createElement('button');
-    span.className = 'tag-avail';
-    span.textContent = t;
-    span.onclick = () => { formTags.push(t); renderFormTags(); };
-    sel.appendChild(span);
+    const btn = document.createElement('button');
+    btn.className = 'tag-avail';
+    btn.textContent = t;
+    btn.onclick = () => { formTags.push(t); renderFormTags(); };
+    sel.appendChild(btn);
   });
+  const inp = document.createElement('input');
+  inp.className = 'new-tag-input';
+  inp.type = 'text';
+  inp.placeholder = 'Nova tag... (Enter)';
+  inp.onkeydown = handleTagInput;
   sel.appendChild(inp);
-  inp.value = '';
 }
 
 function handleTagInput(e) {
@@ -950,18 +556,16 @@ function handleTagInput(e) {
   }
 }
 
-// ── SAVE ──
+// SAVE
 async function saveRecipe() {
   const name = document.getElementById('fName').value.trim();
   if (!name) { showToast('Informe o nome da receita.', 'error'); return; }
-  const rows = document.querySelectorAll('#ingBody tr');
   const ingredients = [];
-  rows.forEach(tr => {
+  document.querySelectorAll('#ingBody tr').forEach(tr => {
     const inputs = tr.querySelectorAll('input');
     const sel = tr.querySelector('select');
     const n = inputs[0].value.trim();
-    const q = inputs[1].value;
-    if (n) ingredients.push({ name: n, qty: q, unit: sel ? sel.value : '' });
+    if (n) ingredients.push({ name: n, qty: inputs[1].value, unit: sel ? sel.value : '' });
   });
   const data = {
     name,
@@ -989,7 +593,7 @@ async function saveRecipe() {
   }
 }
 
-// ── DELETE ──
+// DELETE
 async function deleteRecipe(id) {
   if (!confirm('Excluir esta receita permanentemente?')) return;
   try {
@@ -1001,47 +605,50 @@ async function deleteRecipe(id) {
   }
 }
 
-// ── CONVERTER ──
+// PANELS
+function showList() {
+  setPanel('list');
+}
+
+function setPanel(name) {
+  ['listPanel','detailPanel','formPanel'].forEach(p => {
+    document.getElementById(p).className = 'panel' + (p.startsWith(name) ? ' active' : '');
+  });
+  const hero = document.getElementById('divaHero');
+  if (hero) hero.style.display = name === 'list' ? 'block' : 'none';
+  window.scrollTo(0, 0);
+}
+
+// CONVERTER
 function openConverter() {
-  const from = document.getElementById('convFrom');
-  const to = document.getElementById('convTo');
   const convUnits = UNITS.filter(u => u.type !== 'other');
   const opts = convUnits.map(u => `<option value="${u.key}">${u.label}</option>`).join('');
-  from.innerHTML = opts; to.innerHTML = opts;
-  to.selectedIndex = 4;
+  document.getElementById('convFrom').innerHTML = opts;
+  document.getElementById('convTo').innerHTML = opts;
+  document.getElementById('convTo').selectedIndex = 4;
   document.getElementById('converterModal').classList.add('open');
   doConvert();
 }
 
-function closeConverter() { document.getElementById('converterModal').classList.remove('open'); }
+function closeConverter() {
+  document.getElementById('converterModal').classList.remove('open');
+}
 
 function doConvert() {
   const qty = parseFloat(document.getElementById('convQty').value) || 0;
-  const fk = document.getElementById('convFrom').value;
-  const tk = document.getElementById('convTo').value;
-  const fu = UNITS.find(x => x.key === fk);
-  const tu = UNITS.find(x => x.key === tk);
+  const fu = UNITS.find(x => x.key === document.getElementById('convFrom').value);
+  const tu = UNITS.find(x => x.key === document.getElementById('convTo').value);
   const res = document.getElementById('convResult');
   if (!fu || !tu) { res.textContent = '—'; return; }
   if (fu.type === tu.type) {
-    let v = fu.type === 'volume' ? qty * fu.ml / tu.ml : qty * fu.g / tu.g;
-    const rounded = parseFloat(v.toFixed(4)).toString();
-    res.textContent = `${qty} ${fu.label} = ${rounded} ${tu.label}`;
+    const v = fu.type === 'volume' ? qty * fu.ml / tu.ml : qty * fu.g / tu.g;
+    res.textContent = `${qty} ${fu.label} = ${parseFloat(v.toFixed(4))} ${tu.label}`;
   } else {
-    res.textContent = 'Tipos diferentes (volume ↔ peso) não são conversíveis diretamente.';
+    res.textContent = 'Tipos diferentes não são conversíveis diretamente.';
   }
 }
 
-// ── PANELS ──
-function showList() { setPanel('list'); patchHero('list'); }
-function setPanel(name) { patchHero(name); patchHero(name);
-  ['listPanel','detailPanel','formPanel'].forEach(p => {
-    document.getElementById(p).className = 'panel' + (p.startsWith(name) ? ' active' : '');
-  });
-  window.scrollTo(0,0);
-}
-
-// ── TOAST ──
+// TOAST
 let toastTimer;
 function showToast(msg, type) {
   const t = document.getElementById('toast');
@@ -1051,20 +658,19 @@ function showToast(msg, type) {
   toastTimer = setTimeout(() => { t.className = 'toast'; }, 2800);
 }
 
-
-// Hide hero when not on list panel
-const _origSetPanel = window.setPanel;
-function patchHero(name) {
-  const hero = document.getElementById('divaHero');
-  if (hero) hero.style.display = name === 'list' ? 'block' : 'none';
-}
-
-
-function patchHero(name) {
-  const hero = document.getElementById('divaHero');
-  if (hero) hero.style.display = name === 'list' ? 'block' : 'none';
-}
-
+// EXPOSE GLOBALS
+window.showList       = showList;
+window.showForm       = showForm;
+window.showDetail     = showDetail;
+window.saveRecipe     = saveRecipe;
+window.deleteRecipe   = deleteRecipe;
+window.addIngRow      = addIngRow;
+window.handleTagInput = handleTagInput;
+window.applyFilters   = applyFilters;
+window.openConverter  = openConverter;
+window.closeConverter = closeConverter;
+window.doConvert      = doConvert;
+Object.defineProperty(window, 'currentId', { get: () => currentId, set: v => { currentId = v; } });
 </script>
 </body>
 </html>
