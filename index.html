@@ -749,6 +749,19 @@ function unitLabel(key) {
   return u ? u.label : (key || '');
 }
 
+// ── EXPOSE TO HTML HANDLERS ──
+window.showList = showList;
+window.showDetail = showDetail;
+window.showForm = showForm;
+window.saveRecipe = saveRecipe;
+window.deleteRecipe = deleteRecipe;
+window.addIngRow = addIngRow;
+window.handleTagInput = handleTagInput;
+window.applyFilters = applyFilters;
+window.openConverter = openConverter;
+window.closeConverter = closeConverter;
+window.doConvert = doConvert;
+
 // ── FIRESTORE LISTENER ──
 const q = query(collection(db, 'receitas'), orderBy('createdAt', 'desc'));
 onSnapshot(q, (snapshot) => {
@@ -1052,18 +1065,6 @@ function patchHero(name) {
   if (hero) hero.style.display = name === 'list' ? 'block' : 'none';
 }
 
-// ── EXPOSE TO HTML HANDLERS ──
-window.showList = showList;
-window.showDetail = showDetail;
-window.showForm = showForm;
-window.saveRecipe = saveRecipe;
-window.deleteRecipe = deleteRecipe;
-window.addIngRow = addIngRow;
-window.handleTagInput = handleTagInput;
-window.applyFilters = applyFilters;
-window.openConverter = openConverter;
-window.closeConverter = closeConverter;
-window.doConvert = doConvert;
 </script>
 </body>
 </html>
