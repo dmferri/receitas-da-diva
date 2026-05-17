@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="icone.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Receitas da Diva</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,11 +61,11 @@
   }
 
   .logo-icon {
-    width: 34px; height: 34px;
-    background: var(--terracotta);
+    width: 38px; height: 38px;
     border-radius: 50%;
+    overflow: hidden;
     display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
+    background: transparent;
   }
 
   .header-actions { display: flex; gap: 10px; }
@@ -486,6 +487,35 @@
   .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sage); display: inline-block; }
   .status-bar.offline .status-dot { background: #F5A623; }
 
+
+  .diva-hero { position: relative; }
+  .diva-hero-inner {
+    display: flex; align-items: flex-end;
+    justify-content: space-between; gap: 0;
+  }
+  .diva-mascot {
+    width: 180px; flex-shrink: 0;
+    display: flex; align-items: flex-end; justify-content: center;
+    pointer-events: none; user-select: none;
+  }
+  .diva-mascot img {
+    width: 170px; height: auto;
+    object-fit: contain; display: block;
+  }
+  .diva-welcome { flex: 1; padding: 1.5rem 0 1rem 0; }
+  .diva-welcome-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; color: var(--brown);
+    line-height: 1.2; margin-bottom: 6px;
+  }
+  .diva-welcome-title em { color: var(--terracotta); font-style: italic; }
+  .diva-welcome-sub { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .diva-divider {
+    height: 1px;
+    background: linear-gradient(to right, var(--terracotta-light), transparent);
+    margin: 0 0 1.5rem 0;
+  }
+
   @media (max-width: 768px) {
     .layout { grid-template-columns: 1fr; }
     .sidebar { border-right: none; border-bottom: 1px solid var(--border); }
@@ -498,7 +528,7 @@
 
 <header class="header">
   <div class="logo">
-    <div class="logo-icon">🍲</div>
+    <div class="logo-icon"><img src="icone.png" alt="Ícone" style="width:28px;height:28px;object-fit:contain;display:block;"></div>
     Receitas da Diva
   </div>
   <div class="header-actions">
@@ -537,13 +567,19 @@
   <main class="main">
     <!-- Lista -->
     <div id="listPanel" class="panel active">
+      
+      
+      
       <div class="diva-hero" id="divaHero">
         <div class="diva-hero-inner">
           <div class="diva-welcome">
             <div class="diva-welcome-title">Bem-vindo às<br><em>Receitas da Diva</em></div>
             <div class="diva-welcome-sub">As melhores receitas da família,<br>reunidas em um só lugar. 🍴</div>
           </div>
-</div>
+          <div class="diva-mascot">
+            <img src="imagem.png" alt="Dona Diva">
+          </div>
+        </div>
         <div class="diva-divider"></div>
       </div>
       <div id="loadingState" class="loading">Carregando receitas...</div>
@@ -985,7 +1021,7 @@ function doConvert() {
 
 // ── PANELS ──
 function showList() { setPanel('list'); patchHero('list'); }
-function setPanel(name) { patchHero(name);
+function setPanel(name) { patchHero(name); patchHero(name);
   ['listPanel','detailPanel','formPanel'].forEach(p => {
     document.getElementById(p).className = 'panel' + (p.startsWith(name) ? ' active' : '');
   });
@@ -1005,6 +1041,12 @@ function showToast(msg, type) {
 
 // Hide hero when not on list panel
 const _origSetPanel = window.setPanel;
+function patchHero(name) {
+  const hero = document.getElementById('divaHero');
+  if (hero) hero.style.display = name === 'list' ? 'block' : 'none';
+}
+
+
 function patchHero(name) {
   const hero = document.getElementById('divaHero');
   if (hero) hero.style.display = name === 'list' ? 'block' : 'none';
